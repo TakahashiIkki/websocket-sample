@@ -1,0 +1,17 @@
+version: '3'
+services:
+  server:
+    build: ./server
+    ports:
+      - "13000:3000"
+    volumes:
+      - ./server:/src
+    links:
+      - redis:redis
+    container_name: socket-server
+
+  redis:
+    image: redis:5.0
+    ports:
+      - "6379:6379"
+    container_name: socket-redis
